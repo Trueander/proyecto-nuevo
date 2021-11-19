@@ -1,0 +1,82 @@
+
+    <div class="card " style="width: 800px; margin: auto;">
+
+
+        <div class="card-header">Registrar persona</div>
+        <div class="card-body">
+            <form #personaForm="ngForm">
+              <div class="row">
+                <div class="form-group col-sm-12">
+                    <label for="dni" class="input-label">Dni</label>
+                    <div class="input-group mb-3">
+                        <input type="text" class="form-control" placeholder="Ingrese el dni" aria-label="Ingrese el dni" aria-describedby="button-addon2" name="dni" [(ngModel)]="persona.dni">
+                        <button class="btn btn-outline-success" type="button" id="button-addon2" (click)="buscarPersona()">Buscar</button>
+                      </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="form-group col-sm-6">
+                    <label for="nombre" class="input-label">Nombre</label>
+                    <input type="text" class="form-control" name="nombre" required [(ngModel)]="persona.nombre">
+                </div>
+                <div class="form-group col-sm-6">
+                    <label for="apellido" class="input-label">Apellido</label>
+                    <input type="text" class="form-control" name="apellido" required  [(ngModel)]="persona.apellido">
+                </div>
+
+            </div>
+            <div class="row">
+                <div class="form-group col-sm-12">
+                    <label for="direccion" class="input-label">Direccion</label>
+                    <input type="text" class="form-control" name="direccion" required [(ngModel)]="persona.direccion">
+                </div>
+
+            </div>
+            <div class="row">
+              <div class="form-group col-sm-4">
+                  <label for="departamento" class="input-label">Departamento</label>
+                  <select [compareWith]="comparar" [(ngModel)]="persona.departamento" class="form-control" name="departamento" required>
+                    <option [ngValue]="undefined">--- Seleccionar departamento ---</option>
+                    <option *ngFor="let item of departamentos" [ngValue]="item">{{item}}</option>
+                </select>
+              </div>
+              <div class="form-group col-sm-4">
+                  <label for="provincia" class="input-label">Provincia</label>
+                  <select [compareWith]="comparar" [(ngModel)]="persona.provincia" class="form-control" name="provincia" required>
+                    <option [ngValue]="undefined">--- Seleccionar provincia ---</option>
+                    <option *ngFor="let item of provincias" [ngValue]="item">{{item}}</option>
+                </select>
+              </div>
+              <div class="form-group col-sm-4">
+                <label for="distrito" class="input-label">Distrito</label>
+                <select [compareWith]="comparar" [(ngModel)]="persona.distrito" class="form-control" name="distrito" required>
+                  <option [ngValue]="undefined">--- Seleccionar distrito ---</option>
+                  <option *ngFor="let item of distritos" [ngValue]="item">{{item}}</option>
+              </select>
+            </div>
+
+          </div> 
+          <div class="row">
+            <div class="form-group col-sm-6">
+                <label for="estadoCivil" class="input-label">Estado Civil</label>
+                <select [compareWith]="comparar" [(ngModel)]="persona.estadoCivil" class="form-control" name="estadoCivil" required>
+                  <option [ngValue]="undefined">--- Seleccionar estado civil ---</option>
+                  <option *ngFor="let item of estadoCivil" [ngValue]="item">{{item}}</option>
+              </select>
+            </div>
+            <div class="form-group col-sm-6">
+                <label for="sexo" class="input-label">Sexo</label>
+                <select [compareWith]="comparar" [(ngModel)]="persona.sexo" class="form-control" name="sexo" required>
+                  <option [ngValue]="undefined">--- Seleccionar Sexo ---</option>
+                  <option *ngFor="let item of sexo" [ngValue]="item">{{item}}</option>
+              </select>
+            </div>
+
+        </div> 
+                <button type="submit" class="btn btn-primary mt-4" (click)="savePersona(personaForm)" [disabled]="!personaForm.form.valid" *ngIf="!busquedaActiva">Registrar</button>
+                <button type="submit" class="btn btn-primary mt-4" (click)="updatePersona(personaForm)" [disabled]="!personaForm.form.valid" *ngIf="busquedaActiva">Actualizar</button>
+              </form>
+        </div>
+        
+    
+    </div>

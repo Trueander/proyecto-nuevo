@@ -1,0 +1,84 @@
+<h2>Lista de Datos</h2>
+
+    <!-- Button trigger modal -->
+    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+        Crear Cliente
+      </button>
+
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th>Entidad</th>
+            <th>Calificación</th>
+            <th>Deuda</th>
+            <th>Días vencidos</th>
+            <th>Fecha</th>
+
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let dato of listaClientes">
+            <td>{{dato.entidad}}</td>
+            <td>{{dato.calificacion}}</td>
+            <td>{{dato.deuda}}</td>
+            <td>{{dato.diasVencidas}}</td>
+            <td>{{dato.fecha}}</td>
+        </tr>
+    </tbody>
+</table>
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Registro de cliente</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        
+        <form #clienteForm="ngForm">
+        <div class="modal-body">
+                <div class="row">
+                    <div class="form-group col-sm-12">
+                        <label for="dni" class="input-label">Dni</label>
+                        <div class="input-group mb-3">
+                            <input type="text" class="form-control" placeholder="Ingrese el dni" aria-label="Ingrese el dni" aria-describedby="button-addon2" name="dni" [(ngModel)]="cliente.dni">
+                            <button class="btn btn-outline-success" type="button" id="button-addon2" (click)="buscarCliente()">Buscar</button>
+                          </div>
+                    </div>
+                  </div>
+                    <div class="row">
+                        <div class="form-group col-sm-6">
+                            <label for="nombres" class="input-label">Nombres</label>
+                            <input type="text" class="form-control" name="nombres" required [(ngModel)]="cliente.nombres">
+                        </div>
+                        <div class="form-group col-sm-6">
+                            <label for="apellidos" class="input-label">Apellidos</label>
+                            <input type="text" class="form-control" name="apellidos" required  [(ngModel)]="cliente.apellidos">
+                        </div>
+        
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-sm-6">
+                            <label for="ocupacion" class="input-label">Ocupación</label>
+                            <input type="text" class="form-control" name="ocupacion" required [(ngModel)]="cliente.ocupacion">
+                        </div>
+                        <div class="form-group col-sm-6">
+                            <label for="nacionalidad" class="input-label">Nacionalidad</label>
+                            <input type="text" class="form-control" name="nacionalidad" required [(ngModel)]="cliente.nacionalidad">
+                        </div>
+        
+                    </div>
+
+
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+          <button type="button" class="btn btn-primary" (click)="saveCliente(clienteForm)" [disabled]="!clienteForm.form.valid">Registrar cliente</button>
+        </div>
+    </form>
+      </div>
+    </div>
+  </div>

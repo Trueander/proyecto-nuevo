@@ -1,0 +1,62 @@
+
+
+    <div class="card " style="width: 600px; margin: auto;">
+
+
+        <div class="card-header">Registrar egresado</div>
+        <div class="card-body">
+            <form #egresadoForm="ngForm">
+              <div class="row">
+                <div class="form-group col-sm-12">
+                    <label for="dni" class="input-label">Dni</label>
+                    <div class="input-group mb-3">
+                        <input type="text" class="form-control" placeholder="Ingrese el dni" aria-label="Ingrese el dni" aria-describedby="button-addon2" name="dni" [(ngModel)]="egresado.dni">
+                        <button class="btn btn-outline-success" type="button" id="button-addon2" (click)="buscarEgresado()">Buscar</button>
+                      </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="form-group col-sm-6">
+                    <label for="nombres" class="input-label">Nombre</label>
+                    <input type="text" class="form-control" name="nombres" required [(ngModel)]="egresado.nombres">
+                </div>
+                <div class="form-group col-sm-6">
+                    <label for="apellidos" class="input-label">Apellidos</label>
+                    <input type="text" class="form-control" name="apellidos" required  [(ngModel)]="egresado.apellidos">
+                </div>
+
+            </div>
+            <div class="row">
+                <div class="form-group col-sm-6">
+                    <label for="fecha" class="input-label">Fecha</label>
+                    <input type="text" class="form-control" name="fecha" required [(ngModel)]="egresado.fecha">
+                </div>
+                <div class="form-group col-sm-6">
+                    <label for="grados" class="input-label">Grados</label>
+                    <input type="text" class="form-control" name="grados" required [(ngModel)]="egresado.grados">
+                </div>
+
+            </div>
+            <div class="row">
+              <div class="form-group col-sm-6">
+                  <label for="ocupacion" class="input-label">Instituto</label>
+                  <select [compareWith]="comparar" [(ngModel)]="egresado.instituto" class="form-control" name="instituto" required>
+                    <option [ngValue]="undefined">--- Seleccionar instituto ---</option>
+                    <option *ngFor="let item of institutos" [ngValue]="item">{{item}}</option>
+                </select>
+              </div>
+              <div class="form-group col-sm-6">
+                  <label for="modalidad" class="input-label">Modalidad</label>
+                  <select [compareWith]="comparar" [(ngModel)]="egresado.modalidad" class="form-control" name="modalidad" required>
+                    <option [ngValue]="undefined">--- Seleccionar modalidad ---</option>
+                    <option *ngFor="let item of modalidad" [ngValue]="item">{{item}}</option>
+                </select>
+              </div>
+
+          </div>  
+                <button type="submit" class="btn btn-primary mt-4" (click)="saveEgresado(egresadoForm)" [disabled]="!egresadoForm.form.valid || busquedaActiva">Registrar</button>
+              </form>
+        </div>
+        
+    
+    </div>
